@@ -3,23 +3,27 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '../components/ui/button'
+import { images } from '../src/app/page'
+import Link from 'next/link'
 
 const banners = [
   {
     title: "Cyber for HER",
     subtitle: "HACKATHON EMPOWERING WOMEN IN CYBER SECURITY",
-    image: "/placeholder.svg",
+    image: images.hero.cyberForHer,
     cta: "Learn More",
+    href: "/cyber-for-her",
     sponsors: [
-      { name: "Rubrik", logo: "/placeholder.svg" },
-      { name: "British High Commission", logo: "/placeholder.svg" }
+      { name: "Rubrik", logo: images.sponsors.rubrik },
+      { name: "British High Commission", logo: images.sponsors.bhc }
     ]
   },
   {
     title: "DSCI Excellence Awards 2024",
     subtitle: "Recognizing Innovation in Security & Privacy",
-    image: "/placeholder.svg",
-    cta: "Register Now"
+    image: images.hero.awards,
+    cta: "Register Now",
+    href: "/excellence-awards-2024"
   }
 ]
 
@@ -65,9 +69,11 @@ export default function Hero() {
                     <p className="text-xl text-gray-300 mb-8">
                       {banners[currentBanner].subtitle}
                     </p>
-                    <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
-                      {banners[currentBanner].cta}
-                    </Button>
+                    <Link href={banners[currentBanner].href}>
+                      <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
+                        {banners[currentBanner].cta}
+                      </Button>
+                    </Link>
                     
                     {banners[currentBanner].sponsors && (
                       <div className="mt-12">

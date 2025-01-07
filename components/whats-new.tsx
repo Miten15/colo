@@ -30,7 +30,7 @@ export default function WhatsNew() {
             <h2 className="text-gray-400 text-xl">Upcoming</h2>
             <h1 className="text-white text-4xl font-bold">What's New</h1>
           </div>
-          <Button variant="outline" className="text-white">
+          <Button variant="outline" className="text-black">
             View all
           </Button>
         </div>

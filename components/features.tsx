@@ -1,6 +1,6 @@
 'use client'
 
-import { HoverEffect } from "../components/ui/card-hover-effect"
+import Link from 'next/link'
 import { BadgeIcon as Certificate, Users, Mic2, Linkedin } from 'lucide-react'
 
 const features = [
@@ -8,25 +8,25 @@ const features = [
     title: "Get Recognition from your Peers and Employers",
     description: "Accelerate your career",
     icon: <Certificate className="h-10 w-10" />,
-    link: "#"
+    href: "/certification-programs"
   },
   {
     title: "Join our Corporate Member Diversity",
     description: "Explore membership benefits",
     icon: <Users className="h-10 w-10" />,
-    link: "#"
+    href: "/become-member"
   },
   {
     title: "Stay tuned for our Podcast Episodes",
     description: "Get ready for insightful discussions",
     icon: <Mic2 className="h-10 w-10" />,
-    link: "#"
+    href: "/podcasts"
   },
   {
     title: "Stay tuned for our LinkedIn Live Sessions",
     description: "Get ready for insightful discussions",
     icon: <Linkedin className="h-10 w-10" />,
-    link: "#"
+    href: "https://www.linkedin.com/company/data-security-council-of-india"
   },
 ]
 
@@ -35,8 +35,9 @@ export default function Features() {
     <div className="max-w-7xl mx-auto px-4 py-20">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {features.map((feature, index) => (
-          <div
-            key={index}
+          <Link 
+            key={index} 
+            href={feature.href}
             className="relative group bg-white dark:bg-slate-950 p-8 rounded-xl border border-gray-200 dark:border-gray-800 hover:border-blue-500 transition-all duration-300 h-[250px] flex flex-col justify-between"
           >
             <div>
@@ -55,7 +56,7 @@ export default function Features() {
                 Learn more →
               </span>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
