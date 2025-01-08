@@ -5,7 +5,13 @@ import WinnerShowcase from '../../../../components/awards/winner-showcase'
 import { Button } from '../../../../components/ui/button'
 import Link from 'next/link'
 
-export default function AwardYearPage({ params }: { params: { year: string } }) {
+interface PageProps {
+  params: {
+    year: string
+  }
+}
+
+export default function AwardYearPage({ params }: PageProps) {
   const yearData = awardsData[params.year]
 
   if (!yearData) {
