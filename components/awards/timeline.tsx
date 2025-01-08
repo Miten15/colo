@@ -4,10 +4,18 @@ import { TimelineEvent } from '../../types/awards'
 import { motion } from 'framer-motion'
 
 interface TimelineProps {
-  events: TimelineEvent[];
+  events?: TimelineEvent[];
 }
 
-export default function Timeline({ events }: TimelineProps) {
+export default function Timeline({ events = [] }: TimelineProps) {
+  if (!events || events.length === 0) {
+    return (
+      <div className="text-center py-8 text-gray-500">
+        No timeline events available
+      </div>
+    );
+  }
+
   return (
     <div className="relative">
       {/* Vertical line */}

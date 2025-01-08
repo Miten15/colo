@@ -27,7 +27,7 @@ export default function YearCard({ year, isActive = false }: YearCardProps) {
             className="mx-auto mb-4"
           />
           <h3 className={`text-4xl font-bold text-center ${
-            parseInt(year) === 2024 ? 'text-orange-500' : 'text-blue-600'
+            parseInt(year) === 2025 ? 'text-orange-500' : 'text-blue-600'
           }`}>
             {year}
           </h3>
