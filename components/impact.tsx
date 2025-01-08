@@ -68,9 +68,9 @@ export default function Impact() {
                 {stat.icon}
               </div>
               <h3 className="text-4xl font-bold mb-3">
-                <Counter 
-                  end={stat.number} 
-                  suffix={stat.suffix || "+"} 
+                <Counter
+                  end={stat.number}
+                  suffix={stat.suffix || "+"}
                   duration={2}
                 />
               </h3>

@@ -3,27 +3,27 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '../components/ui/button'
-import { images } from '../src/app/page'
 import Link from 'next/link'
+import { ASSETS } from '../config/assets'
 
 const banners = [
   {
     title: "Cyber for HER",
     subtitle: "HACKATHON EMPOWERING WOMEN IN CYBER SECURITY",
-    image: images.hero.cyberForHer,
+    image: ASSETS.images.banners.cyberForHer,
     cta: "Learn More",
     href: "/cyber-for-her",
     sponsors: [
-      { name: "Rubrik", logo: images.sponsors.rubrik },
-      { name: "British High Commission", logo: images.sponsors.bhc }
+      { name: "Rubrik", logo: ASSETS.images.sponsors.rubrik },
+      { name: "British High Commission", logo: ASSETS.images.sponsors.bhc }
     ]
   },
   {
-    title: "DSCI Excellence Awards 2024",
+    title: "DSCI Excellence Awards",
     subtitle: "Recognizing Innovation in Security & Privacy",
-    image: images.hero.awards,
-    cta: "Register Now",
-    href: "/excellence-awards-2024"
+    image: ASSETS.images.banners.awards2024,
+    cta: "View Past Awards",
+    href: "/excellence-awards"
   }
 ]
 
