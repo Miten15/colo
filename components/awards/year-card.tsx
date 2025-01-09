@@ -1,39 +1,27 @@
-'use client'
+'use client';
 
-import { motion } from 'framer-motion'
-import Image from 'next/image'
-import Link from 'next/link'
+import Link from 'next/link';
+import { EventType } from '../../types/event';
 
 interface YearCardProps {
   year: string;
-  isActive?: boolean;
+  event: EventType | undefined;
 }
 
-export default function YearCard({ year, isActive = false }: YearCardProps) {
+export default function YearCard({ year, event }: YearCardProps) {
   return (
-    <Link href={`/excellence-awards/${year}`}>
-      <motion.div
-        whileHover={{ scale: 1.05 }}
-        className={`relative bg-white rounded-lg shadow-lg overflow-hidden ${
-          isActive ? 'ring-2 ring-blue-500' : ''
-        }`}
-      >
-        <div className="p-6">
-          <Image
-            src="/assets/logos/dsci-excellence-awards.svg"
-            alt={`DSCI Excellence Awards ${year}`}
-            width={200}
-            height={100}
-            className="mx-auto mb-4"
-          />
-          <h3 className={`text-4xl font-bold text-center ${
-            parseInt(year) === 2025 ? 'text-orange-500' : 'text-blue-600'
-          }`}>
-            {year}
-          </h3>
+      <Link href={event ? `/excellence-awards/${event.id}` : "#"} className="block">
+          <div className="bg-white p-6 rounded-md shadow-md hover:shadow-lg transition-shadow duration-300">
+              <h2 className="text-2xl font-semibold text-gray-800 mb-2">{year}</h2>
+              {event && (
+                  <>
+                      <p className="text-gray-600 mb-4">{event.name}</p>
+                      <p className="text-blue-500 font-medium">
+                        {event.dates}
+                      </p>
+                   </>
+             )}
         </div>
-      </motion.div>
     </Link>
-  )
+  );
 }
-

@@ -2,8 +2,10 @@ import { ASSETS } from '../../../config/assets'
 import YearCard from '../../../components/awards/year-card'
 import Link from 'next/link'
 import { Button } from '../../../components/ui/button'
+import { eventsData } from '../../../data/events-data';
+import { awardsData } from '../../../data/awards-data';
 
-const awardYears = ["2025","2024", "2023", "2022", "2021"]
+const awardYears = ["2025", "2024", "2023", "2022", "2021"]
 
 export default function ExcellenceAwardsPage() {
   return (
@@ -23,17 +25,18 @@ export default function ExcellenceAwardsPage() {
       {/* Awards Cards */}
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {awardYears.map((year) => (
-            <YearCard key={year} year={year} />
-          ))}
+          {awardYears.map((year) => {
+              const event = eventsData.find(event => event.id.startsWith(year.toLowerCase()));
+              return  <YearCard key={year} year={year} event={event} />;
+          })}
         </div>
 
         <div className="mt-16 text-center">
           <h2 className="text-2xl font-semibold mb-4">About DSCI Excellence Awards</h2>
           <p className="text-gray-600 max-w-3xl mx-auto mb-8">
-            The DSCI Excellence Awards is a prestigious recognition program that honors organizations 
-            and individuals who have made significant contributions to the field of cybersecurity and 
-            data protection. These awards celebrate innovation, best practices, and outstanding 
+            The DSCI Excellence Awards is a prestigious recognition program that honors organizations
+            and individuals who have made significant contributions to the field of cybersecurity and
+            data protection. These awards celebrate innovation, best practices, and outstanding
             achievements in various categories related to information security.
           </p>
           <Link href="/excellence-awards/nominate">
@@ -46,4 +49,3 @@ export default function ExcellenceAwardsPage() {
     </div>
   )
 }
-
