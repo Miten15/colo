@@ -1,75 +1,50 @@
-import { notFound } from 'next/navigation'
-import { awardsData } from '../../../../data/awards-data'
-import Timeline from '../../../../components/awards/timeline'
-import WinnerShowcase from '../../../../components/awards/winner-showcase'
-import { Button } from '../../../../components/ui/button'
+import { ASSETS } from '../../../../config/assets'
+import YearCard from '../../../../components/awards/year-card'
 import Link from 'next/link'
+import { Button } from '../../../../components/ui/button'
+import { eventsData } from '../../../../data/events-data';
+import { awardsData } from '../../../../data/awards-data';
 
-interface PageProps {
-  params: {
-    year: string
-  }
-}
+const awardYears = ["2025", "2024", "2023", "2022", "2021"]
 
-export default function AwardYearPage({ params }: PageProps) {
-  const yearData = awardsData[params.year]
-
-  if (!yearData) {
-    notFound()
-  }
-
+export default function ExcellenceAwardsPage() {
   return (
     <div className="bg-gray-100 min-h-screen">
       {/* Hero Section */}
       <div className="bg-[#1a1150] text-white py-20">
         <div className="container mx-auto px-4">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              DSCI Excellence Awards {params.year}
-            </h1>
-            {yearData.theme && (
-              <>
-                <h2 className="text-3xl font-semibold mb-4">{yearData.theme.title}</h2>
-                <p className="text-xl text-gray-300">{yearData.theme.subtitle}</p>
-              </>
-            )}
-          </div>
+          <h1 className="text-4xl md:text-6xl font-bold text-center mb-6">
+            DSCI Excellence Awards
+          </h1>
+          <p className="text-xl text-center text-gray-300 max-w-3xl mx-auto">
+            Recognizing and celebrating excellence in cybersecurity and data protection
+          </p>
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-12">
-        <div className="mb-16">
-          <h3 className="text-2xl font-semibold mb-6">Event Timeline</h3>
-          <Timeline events={yearData.timeline} />
+      {/* Awards Cards */}
+      <div className="container mx-auto px-4 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {awardYears.map((year) => {
+              const event = eventsData.find(event => event.id.startsWith(year.toLowerCase()));
+              if(event) {
+                return  <YearCard key={year} year={year} event={event} />
+              }
+              return null
+          })}
         </div>
-
-        <div className="mb-16">
-          <h3 className="text-2xl font-semibold mb-6">Award Winners</h3>
-          <WinnerShowcase winners={yearData.segments.corporate.winners} />
-        </div>
-
-        {yearData.partners && (
-          <div className="mt-16">
-            <h3 className="text-2xl font-semibold mb-6">Our Partners</h3>
-            <div className="flex flex-wrap justify-center gap-8">
-              {yearData.partners.map((partner) => (
-                <div key={partner.name} className="text-center">
-                  <img 
-                    src={partner.logo} 
-                    alt={partner.name} 
-                    className="h-16 w-auto mx-auto mb-2"
-                  />
-                  <p className="text-sm text-gray-600">{partner.type} Partner</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
 
         <div className="mt-16 text-center">
-          <Link href="/excellence-awards">
-            <Button variant="outline">
-              View All Years
+          <h2 className="text-2xl font-semibold mb-4">About DSCI Excellence Awards</h2>
+          <p className="text-gray-600 max-w-3xl mx-auto mb-8">
+            The DSCI Excellence Awards is a prestigious recognition program that honors organizations
+            and individuals who have made significant contributions to the field of cybersecurity and
+            data protection. These awards celebrate innovation, best practices, and outstanding
+            achievements in various categories related to information security.
+          </p>
+          <Link href="/excellence-awards/nominate">
+            <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
+              Nominate for 2024 Awards
             </Button>
           </Link>
         </div>
@@ -77,4 +52,3 @@ export default function AwardYearPage({ params }: PageProps) {
     </div>
   )
 }
-
